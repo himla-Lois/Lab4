@@ -2,6 +2,7 @@ package lab4.gui;
 
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Observable;
@@ -14,6 +15,8 @@ import lab4.data.GameGrid;
 
 /**
  * A panel providing a graphical view of the game board
+ * @author Wilma
+ * @author Noora
  */
 
 public class GamePanel extends JPanel implements Observer{
@@ -49,13 +52,50 @@ public class GamePanel extends JPanel implements Observer{
 		return new int[] {positionX, positionY};
 	}
 	
+	 /**
+	   * Method predefined by H�kan to repaint the grid when an update is received
+	   * 
+	   * @param arg0
+	   * @param arg1
+	   */
 	public void update(Observable arg0, Object arg1) {
 		this.repaint();
 	}
 	
+	  /**
+	   * Called when the JPanel GUI object is to be redrawn
+	   */
 	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		
-	}
+		super.paintComponent(g); //går till en superklass. 
+		int gSize =  grid.getSize();
+
+		for(int x = 0; x < gSize; x++){
+			for(int y = 0; y < gSize; y++){
+				
+			switch(grid.getLocation(x, y)){
+
+				case GameGrid.ME: 
+				g.setColor(Color.GREEN);
+				g.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //fills the positions of ME's turn
+				break;
+
+				case GameGrid.OTHER:
+				g.setColor(Color.RED);
+				g.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //fills the positions of OTHER's turn
+				break;
+
+				default:
+				g.setColor(Color.BLACK);
+				g.drawRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //When no one clicked
+				break;
+
+			}	
+
+
+			}
+		}
+		}
+	
+
 	
 }

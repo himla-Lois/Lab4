@@ -11,14 +11,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+
 import lab4.gui.ConnectionWindow;
 
 import lab4.client.GomokuClient;
 import lab4.data.GomokuGameState;
 
-/*
- * The GUI class
- * 
+/**
+ * The GUI class that handles the game window and its components
+ * @author Wilma
+ * @author Noora
  */
 
 public class GomokuGUI implements Observer{
@@ -55,20 +58,59 @@ public class GomokuGUI implements Observer{
 		messageLabel = new JLabel("Welcome to Gomoku!");
 
 		gameGridPanel = new GamePanel(g.getGameGrid());
-		gameGridPanel.addMouseListener(mouseListener);
 
-
+		// When connect button is pressed, open a connection window
 		connectButton = new JButton("Connect");
+		connectButton.setAlignmentX(0);
+
+
+		newGameButton = new JButton("New game");
+		disconnectButton = new JButton("Disconnect");
+		
+
+	    // Vertical boxlayout contains:
+	    // [ gameGridPanel ]
+	    // [ [ connectButton, newGameButton, disconnectButton ] ] <--- this is a horizontal box layout inside the vbox
+	    // [ messageLabel ]
+		
+		Box vBox = Box.createVerticalBox();
+		vBox.add(gameGridPanel);
+		
+
+		Box hBox = Box.createHorizontalBox();
+		hBox.setAlignmentX(0); //Aligns
+		hBox.add(connectButton);
+		hBox.add(newGameButton);
+		hBox.add(disconnectButton);
+		
+		vBox.add(hBox);
+		vBox.add(messageLabel);
+		
+
+		frame.getContentPane().add(vBox);
+
+		frame.setLocation(0, 0);
+		frame.setVisible(true);
+		 // vBox contains all elements properly aligned, so its preferred size is the minimum necessary size//
+		frame.setSize(vBox.getPreferredSize().width + 20, vBox.getPreferredSize().height + hBox.getPreferredSize().height + 20);
+		gameGridPanel.addMouseListener(new MouseAdapter(){
+			
+			public void mouseClicked(MouseEvent e) {
+				//when player "me" clicked on board, we get the pixel coordinates
+				int[] gridCoordinates = gameGridPanel.getGridPosition(e.getX(), e.getY());
+
+				//When player "me" wants to make a move
+				gamestate.move(gridCoordinates[0], gridCoordinates[1]);	
+				}
+		});
 		connectButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
-				new ConnectionWindow();
+				ConnectionWindow cv = new ConnectionWindow(client);
 				
 			}
 			
 		});
-
-		newGameButton = new JButton("New game");
 		newGameButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -78,7 +120,7 @@ public class GomokuGUI implements Observer{
 			
 		});
 
-		disconnectButton = new JButton("Disconnect");
+	
 		disconnectButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -88,26 +130,17 @@ public class GomokuGUI implements Observer{
 			
 		});
 
-		Box vBox = Box.createVerticalBox();
-		vBox.add(gameGridPanel);
-		vBox.add(disconnectButton);
-		vBox.add(messageLabel);
 
-		Box hBox = Box.createHorizontalBox();
-		hBox.setAlignmentX(0); 
-		hBox.add(connectButton);
-		hBox.add(newGameButton);
-		hBox.add(disconnectButton);
-
-		frame.getContentPane().add(vBox);
-
-		frame.setLocation(0, 0);
-		frame.setVisible(true);
-
-		frame.setSize(vBox.getPreferredSize().width + 20, vBox.getPreferredSize().height + hBox.getPreferredSize().height + 20);
 
 
 	}
+	
+	  /**
+	   * Method predefined by H�kan to update the buttons in the GUI based on the connection status
+	   * 
+	   * @param arg0
+	   * @param arg1
+	   */
 	
 	
 	public void update(Observable arg0, Object arg1) {
