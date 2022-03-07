@@ -75,21 +75,19 @@ public class GamePanel extends JPanel implements Observer{
 			switch(grid.getLocation(x, y)){
 
 				case GameGrid.ME: 
-				g.setColor(Color.GREEN);
-				g.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //fills the positions of ME's turn
+					g.setColor(Color.GREEN); //set color to "me"
 				break;
 
 				case GameGrid.OTHER:
-				g.setColor(Color.RED);
-				g.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //fills the positions of OTHER's turn
+					g.setColor(Color.RED); //set color to "other"
 				break;
 
 				default:
-				g.setColor(Color.BLACK);
-				g.drawRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //When no one clicked
-				break;
+					g.setColor(Color.BLACK); //sets color to unclaimed
+			}
 
-			}	
+			//fills the rectangle
+			g.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
 
 
 			}
