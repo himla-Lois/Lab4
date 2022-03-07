@@ -6,6 +6,7 @@ import java.util.Observable;
  * Represents the 2-d game grid
  * @author Wilma
  * @author Noora
+ * @author Rasmus
  */
 public class GameGrid extends Observable {
 	private int[][] grid;

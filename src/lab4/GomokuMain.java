@@ -2,6 +2,13 @@ package lab4;
 import lab4.gui.GomokuGUI;
 import lab4.client.GomokuClient;
 import lab4.data.GomokuGameState;
+
+/**
+ * A class to handle init logic
+ * @author Wilma
+ * @author Noora
+ * @author Rasmus
+ */
 public class GomokuMain {
 
 	public static void main(String[] args) {
