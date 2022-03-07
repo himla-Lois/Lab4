@@ -2,11 +2,7 @@ package lab4.gui;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -56,6 +52,9 @@ public class GomokuGUI implements Observer{
 
 
 		frame = new JFrame("Gomoku");
+		SpringLayout layout = new SpringLayout();
+		frame.setLayout(layout);
+
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		messageLabel = new JLabel("Welcome to Gomoku!");
@@ -65,41 +64,14 @@ public class GomokuGUI implements Observer{
 
 		// When connect button is pressed, open a connection window
 		connectButton = new JButton("Connect");
-		connectButton.setAlignmentX(0);
-
-
 		newGameButton = new JButton("New game");
 		disconnectButton = new JButton("Disconnect");
-		
 
-	    // Vertical boxlayout contains:
-	    // [ gameGridPanel ]
-	    // [ [ connectButton, newGameButton, disconnectButton ] ] <--- this is a horizontal box layout inside the vbox
-	    // [ messageLabel ]
-		
-		Box vBox = Box.createVerticalBox();
-		vBox.add(gameGridPanel);
-		
 
-		Box hBox = Box.createHorizontalBox();
-		hBox.setAlignmentX(1); //Aligns
-		hBox.add(connectButton);
-		hBox.add(newGameButton);
-		hBox.add(disconnectButton);
-		
-		vBox.add(hBox);
-		vBox.add(messageLabel);
-		
-		Container plane = frame.getContentPane();
-		plane.setLayout(new BoxLayout(plane, BoxLayout.Y_AXIS));
-		plane.add(vBox);
-		//frame.setLayout(new BorderLayout());
-		//frame.getContentPane().add(vBox, BorderLayout.CENTER);
+		frame.setLocation(0, 0);
 
-		frame.pack();
-		frame.setVisible(true);
-		 // vBox contains all elements properly aligned, so its preferred size is the minimum necessary size//
-		frame.setSize(vBox.getPreferredSize().width + 20, vBox.getPreferredSize().height + hBox.getPreferredSize().height + 20);
+		// vBox contains all elements properly aligned, so its preferred size is the minimum necessary size//
+		//frame.setSize(vBox.getPreferredSize().width + 20, vBox.getPreferredSize().height + hBox.getPreferredSize().height + 20);
 		gameGridPanel.addMouseListener(new MouseAdapter(){
 			
 			public void mouseClicked(MouseEvent e) {
@@ -110,6 +82,7 @@ public class GomokuGUI implements Observer{
 				gamestate.move(gridCoordinates[0], gridCoordinates[1]);	
 				}
 		});
+
 		connectButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -137,13 +110,38 @@ public class GomokuGUI implements Observer{
 			
 		});
 
+		frame.add(gameGridPanel);
+		frame.add(connectButton);
+		frame.add(newGameButton);
+		frame.add(disconnectButton);
+		frame.add(messageLabel);
+
+		frame.pack();
+
+		frame.setSize(gameGridPanel.getUNIT_SIZE() * gamestate.getDEFAULT_SIZE() + 40, gamePanel.getUNIT_SIZE() * gamestate.getDEFAULT_SIZE() + 200);
+
+		layout.putConstraint(SpringLayout.WEST, gameGridPanel, 5, SpringLayout.WEST, frame);
+		layout.putConstraint(SpringLayout.NORTH, gameGridPanel, 5, SpringLayout.NORTH, frame);
+		layout.putConstraint(SpringLayout.NORTH, connectButton, 5, SpringLayout.SOUTH, gameGridPanel);
+		layout.putConstraint(SpringLayout.NORTH, newGameButton, 5, SpringLayout.SOUTH, gameGridPanel);
+		layout.putConstraint(SpringLayout.NORTH, disconnectButton, 5, SpringLayout.SOUTH, gameGridPanel);
+
+		layout.putConstraint(SpringLayout.WEST, messageLabel, 5, SpringLayout.WEST, frame);
+		layout.putConstraint(SpringLayout.NORTH, messageLabel, 5, SpringLayout.SOUTH, connectButton);
+
+		layout.putConstraint(SpringLayout.WEST, connectButton, 5, SpringLayout.WEST, frame);
+		layout.putConstraint(SpringLayout.WEST, newGameButton, 5, SpringLayout.EAST, connectButton);
+		layout.putConstraint(SpringLayout.WEST, disconnectButton, 5, SpringLayout.EAST, newGameButton);
+
+		frame.setVisible(true);
+
 
 
 
 	}
 	
 	  /**
-	   * Method predefined by Håkan to update the buttons in the GUI based on the connection status
+	   * Method predefined by Hï¿½kan to update the buttons in the GUI based on the connection status
 	   * 
 	   * @param arg0
 	   * @param arg1
