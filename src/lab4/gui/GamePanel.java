@@ -66,7 +66,7 @@ public class GamePanel extends JPanel implements Observer{
 	   * Called when the JPanel GUI object is to be redrawn
 	   */
 	public void paintComponent(Graphics g){
-		super.paintComponent(g); //går till en superklass. 
+		super.paintComponent(g); //goes to a superclass. 
 		int gSize =  grid.getSize();
 
 		for(int x = 0; x < gSize; x++){
