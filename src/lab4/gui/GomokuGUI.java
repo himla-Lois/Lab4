@@ -21,6 +21,7 @@ import lab4.data.GomokuGameState;
  * The GUI class that handles the game window and its components
  * @author Wilma
  * @author Noora
+ * @author Rasmus
  */
 
 public class GomokuGUI implements Observer{
@@ -141,7 +142,7 @@ public class GomokuGUI implements Observer{
 	}
 	
 	  /**
-	   * Method predefined by Håkan to update the buttons in the GUI based on the connection status
+	   * Method predefined by Hï¿½kan to update the buttons in the GUI based on the connection status
 	   * 
 	   * @param arg0
 	   * @param arg1

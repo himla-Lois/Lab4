@@ -17,6 +17,7 @@ import lab4.data.GameGrid;
  * A panel providing a graphical view of the game board
  * @author Wilma
  * @author Noora
+ * @author Rasmus
  */
 
 public class GamePanel extends JPanel implements Observer{
@@ -57,7 +58,7 @@ public class GamePanel extends JPanel implements Observer{
 	}
 	
 	 /**
-	   * Method predefined by Håkan to repaint the grid when an update is received
+	   * Method predefined by Hï¿½kan to repaint the grid when an update is received
 	   * 
 	   * @param arg0
 	   * @param arg1

@@ -13,6 +13,7 @@ import lab4.client.GomokuClient;
  * Represents the state of a game
  * @author Wilma
  * @author Noora
+ * @author Rasmus
  */
 public class GomokuGameState extends Observable implements Observer {
 	
@@ -176,7 +177,7 @@ public class GomokuGameState extends Observable implements Observer {
 
 	
 	  /** 
-	   * Method predefined by Håkan to update the game state based on receiving a connection
+	   * Method predefined by Hï¿½kan to update the game state based on receiving a connection
 	   * 
 	   * @param o
 	   * @param arg
