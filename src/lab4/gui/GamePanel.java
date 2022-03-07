@@ -24,6 +24,10 @@ public class GamePanel extends JPanel implements Observer{
 	private final int UNIT_SIZE = 20;
 	private GameGrid grid;
 	
+	public int getUNIT_SIZE() {
+		return UNIT_SIZE;
+	}
+	
 	/**
 	 * The constructor
 	 * 
@@ -47,13 +51,13 @@ public class GamePanel extends JPanel implements Observer{
 	 * @return an integer array containing the [x, y] grid position
 	 */
 	public int[] getGridPosition(int x, int y){
-		int positionX = Math.floorDiv(x, UNIT_SIZE);
-		int positionY = Math.floorDiv(y, UNIT_SIZE);
+		int positionX = (x/UNIT_SIZE);
+		int positionY = (y/UNIT_SIZE);
 		return new int[] {positionX, positionY};
 	}
 	
 	 /**
-	   * Method predefined by Hï¿½kan to repaint the grid when an update is received
+	   * Method predefined by Håkan to repaint the grid when an update is received
 	   * 
 	   * @param arg0
 	   * @param arg1

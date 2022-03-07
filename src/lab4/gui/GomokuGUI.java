@@ -118,7 +118,7 @@ public class GomokuGUI implements Observer{
 
 		frame.pack();
 
-		frame.setSize(gameGridPanel.getUNIT_SIZE() * gamestate.getDEFAULT_SIZE() + 40, gamePanel.getUNIT_SIZE() * gamestate.getDEFAULT_SIZE() + 200);
+		frame.setSize(gameGridPanel.getUNIT_SIZE() * gamestate.getDEFAULT_SIZE() + 40, gameGridPanel.getUNIT_SIZE() * gamestate.getDEFAULT_SIZE() + 200);
 
 		layout.putConstraint(SpringLayout.WEST, gameGridPanel, 5, SpringLayout.WEST, frame);
 		layout.putConstraint(SpringLayout.NORTH, gameGridPanel, 5, SpringLayout.NORTH, frame);
@@ -141,7 +141,7 @@ public class GomokuGUI implements Observer{
 	}
 	
 	  /**
-	   * Method predefined by Hï¿½kan to update the buttons in the GUI based on the connection status
+	   * Method predefined by Håkan to update the buttons in the GUI based on the connection status
 	   * 
 	   * @param arg0
 	   * @param arg1
