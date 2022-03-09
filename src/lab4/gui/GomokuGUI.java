@@ -142,7 +142,7 @@ public class GomokuGUI implements Observer{
 	}
 	
 	  /**
-	   * Method predefined by Hï¿½kan to update the buttons in the GUI based on the connection status
+	   * Method predefined by Håkan to update the buttons in the GUI based on the connection status
 	   * 
 	   * @param arg0
 	   * @param arg1

@@ -22,7 +22,7 @@ import lab4.data.GameGrid;
 
 public class GamePanel extends JPanel implements Observer{
 
-	private final int UNIT_SIZE = 20;
+	private final int UNIT_SIZE = 30;
 	private GameGrid grid;
 	
 	public int getUNIT_SIZE() {
@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Observer{
 	}
 	
 	 /**
-	   * Method predefined by Hï¿½kan to repaint the grid when an update is received
+	   * Method predefined by Håkan to repaint the grid when an update is received
 	   * 
 	   * @param arg0
 	   * @param arg1
@@ -77,6 +77,8 @@ public class GamePanel extends JPanel implements Observer{
 		for(int x = 0; x < gSize; x++){
 			for(int y = 0; y < gSize; y++){
 				
+				
+				
 			switch(grid.getLocation(x, y)){
 
 				case GameGrid.ME: 
@@ -88,12 +90,13 @@ public class GamePanel extends JPanel implements Observer{
 				break;
 
 				default:
-					g.setColor(Color.BLACK); //sets color to unclaimed
+					g.setColor(Color.WHITE); //sets color to unclaimed
 			}
 
 			//fills the rectangle
 			g.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
-
+			g.setColor(Color.BLACK);
+			g.drawRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
 
 			}
 		}

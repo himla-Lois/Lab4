@@ -19,7 +19,7 @@ public class GomokuGameState extends Observable implements Observer {
 	
 	// Game variables
 	private GameGrid gameGrid;
-	private final int DEAFULT_SIZE = 15;
+	private final int DEAFULT_SIZE = 20;
 	public int getDEFAULT_SIZE() {
 		return DEAFULT_SIZE;
 	}
@@ -177,7 +177,7 @@ public class GomokuGameState extends Observable implements Observer {
 
 	
 	  /** 
-	   * Method predefined by Hï¿½kan to update the game state based on receiving a connection
+	   * Method predefined by Håkan to update the game state based on receiving a connection
 	   * 
 	   * @param o
 	   * @param arg
